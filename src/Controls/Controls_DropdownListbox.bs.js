@@ -14,20 +14,20 @@ function useControls(multiSelectOpt, size) {
       });
   var setMenuVisible = match$1[1];
   var showMenu = function (param) {
-    return Curry._1(setMenuVisible, (function (param) {
-                  return true;
-                }));
+    Curry._1(setMenuVisible, (function (param) {
+            return true;
+          }));
   };
   var hideMenu = function (param) {
-    return Curry._1(setMenuVisible, (function (param) {
-                  return false;
-                }));
+    Curry._1(setMenuVisible, (function (param) {
+            return false;
+          }));
   };
   var selectIndex$1 = function (index) {
     Curry._1(selectIndex, index);
-    return Curry._1(setMenuVisible, (function (param) {
-                  return false;
-                }));
+    Curry._1(setMenuVisible, (function (param) {
+            return false;
+          }));
   };
   return {
           hideMenu: hideMenu,

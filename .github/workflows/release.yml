@@ -8,26 +8,34 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/checkout@v4
         with:
-          node-version: "14.x"
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: package.json
+          cache: yarn
       - name: Install dependencies
-        run: yarn --frozen-lockfile --ignore-engines
+        run: yarn install --frozen-lockfile
       - name: Build project
         run: yarn build
       - name: Run tests
-        run: yarn test:ci
-      - name: Report to codecov
-        uses: codecov/codecov-action@v1
+        run: yarn test
       - name: Bundle production modules
         run: yarn bundle
       - name: Release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn global add semantic-release && semantic-release
+        run: yarn semantic-release

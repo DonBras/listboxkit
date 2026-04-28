@@ -37,8 +37,7 @@ module FireEvent = {
   let blur = _ => ()
   // Not implemented
   let focus = _ => ()
-  // Not implemented
-  let tab = UserEvent.tab
+  let tab = () => ReactTestingLibrary.UserEvent.tab()
 }
 
 open ReactTestingLibrary
@@ -51,7 +50,7 @@ include Jest
 include JestDom
 
 let assertAndContinue = _ => ()
-let toEqual = (a, b) => a |> Expect.toEqual(b)
+let toEqual = (a, b) => a->Expect.toEqual(b)
 let toHaveTextContent = (a, b) => a |> JestDom.toHaveTextContent(b)
 
 let toBeHighlighted = expect => expect |> toHaveAttribute("class", ~value="highlighted")

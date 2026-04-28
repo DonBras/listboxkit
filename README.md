@@ -1,31 +1,33 @@
-# listboxkit
+# @donbras/listboxkit
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/brnrdog/listbox/Release?style=flat-square)
-[![npm](https://img.shields.io/npm/v/listboxkit?style=flat-square)](https://www.npmjs.com/package/listboxkit)
-[![npm bundle size](https://img.shields.io/bundlephobia/min/listboxkit?style=flat-square)](https://bundlephobia.com/result?p=listboxkit)
-![Codecov](https://img.shields.io/codecov/c/github/brnrdog/listboxkit?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/DonBras/listboxkit/release.yml?branch=master&style=flat-square)
+[![npm](https://img.shields.io/npm/v/@donbras/listboxkit?style=flat-square)](https://www.npmjs.com/package/@donbras/listboxkit)
+[![npm bundle size](https://img.shields.io/bundlephobia/min/@donbras/listboxkit?style=flat-square)](https://bundlephobia.com/result?p=@donbras/listboxkit)
+![Codecov](https://img.shields.io/codecov/c/github/DonBras/listboxkit?style=flat-square)
 
 Light and flexible React hooks written in ReScript for building accessible listbox composed components, like menus, dropdown select and others.
+
+> This package is a fork of [`listboxkit`](https://github.com/brnrdog/listbox) by Bernardo Gurgel. The functionality is identical; only the dependency toolchain has been modernized (Node 20+, jest 30, rollup 4, semantic-release 24, dropped BuckleScript-era packages, current `@rescript/react`). The public API of the hooks is unchanged.
 
 ## Installation
 
 Install it using the package manager of your preference:
 
 ```bash
-npm install --save listboxkit
+npm install --save @donbras/listboxkit
 ```
 
 Or if your project uses yarn:
 
 ```bash
-yarn add listboxkit
+yarn add @donbras/listboxkit
 ```
 
-For **ReScript** projects, add `listboxkit` as a dependency in your `bsconfig.json` file:
+For **ReScript** projects, add `@donbras/listboxkit` as a dependency in your `bsconfig.json` file:
 
 ```json
 {
-  "bs-dependencies": ["listboxkit"]
+  "bs-dependencies": ["@donbras/listboxkit"]
 }
 ```
 

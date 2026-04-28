@@ -47,9 +47,9 @@ function firstIndex$1(i) {
   return Belt_Option.getWithDefault(Belt_Array.get(i, 0), -1);
 }
 
-var equals = Caml_obj.caml_equal;
+var equals = Caml_obj.equal;
 
-var diff = Caml_obj.caml_notequal;
+var diff = Caml_obj.notequal;
 
 function selectIndex(keepOpt, multiSelect, setHighlightedIndex, setSelectedIndexes, index) {
   var keep = keepOpt !== undefined ? keepOpt : false;
@@ -58,7 +58,7 @@ function selectIndex(keepOpt, multiSelect, setHighlightedIndex, setSelectedIndex
         }));
   Curry._1(setSelectedIndexes, (function (selectedIndexes) {
           var isIncluded = Belt_Array.some(selectedIndexes, (function (param) {
-                  return Caml_obj.caml_equal(index, param);
+                  return Caml_obj.equal(index, param);
                 }));
           if (multiSelect) {
             if (keep) {
@@ -69,7 +69,7 @@ function selectIndex(keepOpt, multiSelect, setHighlightedIndex, setSelectedIndex
               }
             } else if (isIncluded) {
               return Belt_Array.keep(selectedIndexes, (function (param) {
-                            return Caml_obj.caml_notequal(index, param);
+                            return Caml_obj.notequal(index, param);
                           }));
             } else {
               return Belt_Array.concat(selectedIndexes, [index]);
@@ -86,7 +86,6 @@ function selectIndex(keepOpt, multiSelect, setHighlightedIndex, setSelectedIndex
             return [index];
           }
         }));
-  
 }
 
 function useControls(multiSelect, size) {
@@ -101,39 +100,39 @@ function useControls(multiSelect, size) {
   var setHighlightedIndex = match$1[1];
   var highlightedIndex = match$1[0];
   var highlightIndex = function (i) {
-    return Curry._1(setHighlightedIndex, (function (param) {
-                  return i;
-                }));
+    Curry._1(setHighlightedIndex, (function (param) {
+            return i;
+          }));
   };
   var highlightFirst = function (param) {
-    return Curry._1(setHighlightedIndex, firstIndex);
+    Curry._1(setHighlightedIndex, firstIndex);
   };
   var highlightLast = function (param) {
-    return Curry._1(setHighlightedIndex, (function (param) {
-                  return size - 1 | 0;
-                }));
+    Curry._1(setHighlightedIndex, (function (param) {
+            return size - 1 | 0;
+          }));
   };
   var highlightNext = function (param) {
-    return Curry._1(setHighlightedIndex, (function (param) {
-                  return nextIndex(size, param);
-                }));
+    Curry._1(setHighlightedIndex, (function (param) {
+            return nextIndex(size, param);
+          }));
   };
   var highlightPrev = function (param) {
-    return Curry._1(setHighlightedIndex, (function (param) {
-                  return prevIndex(size, param);
-                }));
+    Curry._1(setHighlightedIndex, (function (param) {
+            return prevIndex(size, param);
+          }));
   };
   var resetHighlighted = function (param) {
-    return Curry._1(setHighlightedIndex, reset);
+    Curry._1(setHighlightedIndex, reset);
   };
   var selectHighlighted = function (param) {
-    return selectIndex(undefined, multiSelect, setHighlightedIndex, setSelectedIndexes, highlightedIndex);
+    selectIndex(undefined, multiSelect, setHighlightedIndex, setSelectedIndexes, highlightedIndex);
   };
   var selectNext = function (param) {
-    return selectIndex(true, multiSelect, setHighlightedIndex, setSelectedIndexes, nextIndex(size, highlightedIndex));
+    selectIndex(true, multiSelect, setHighlightedIndex, setSelectedIndexes, nextIndex(size, highlightedIndex));
   };
   var selectPrev = function (param) {
-    return selectIndex(true, multiSelect, setHighlightedIndex, setSelectedIndexes, prevIndex(size, highlightedIndex));
+    selectIndex(true, multiSelect, setHighlightedIndex, setSelectedIndexes, prevIndex(size, highlightedIndex));
   };
   var selectedIndex = firstIndex$1(selectedIndexes);
   return {
@@ -148,7 +147,7 @@ function useControls(multiSelect, size) {
           selectedIndexes: selectedIndexes,
           selectHighlighted: selectHighlighted,
           selectIndex: (function (eta) {
-              return selectIndex(undefined, multiSelect, setHighlightedIndex, setSelectedIndexes, eta);
+              selectIndex(undefined, multiSelect, setHighlightedIndex, setSelectedIndexes, eta);
             }),
           selectNext: selectNext,
           selectPrev: selectPrev
